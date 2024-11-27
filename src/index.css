@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "DungGeunMo";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "DungGeunMo";
+}
+
+.list-icon-style strong {
+  @apply block my-1 text-lg;
+}
+.list-icon-style p {
+  @apply break-keep;
+}
+.list-icon-style svg {
+  @apply mx-auto text-3xl;
+}
+
+.input-style {
+  @apply p-2 border border-black shadow-custom rounded-md focus:outline-none;
+}
+
+.button-style {
+  @apply px-5 py-2 text-black bg-gradient-to-r from-blue-300 to-purple-300 rounded-md border border-black shadow-custom text-white;
+}
+
+.text-style {
+  @apply bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent font-bold;
+}
+
+.title-style {
+  @apply text-center text-3xl font-bold;
+}
