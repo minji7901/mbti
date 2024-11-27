@@ -7,7 +7,7 @@ import { setUser } from "../redux/slices/authSlice";
 export default function ProfilePage() {
   const [profile, setProfile] = useState(null); //전체 프로필
   const [nickname, setNickname] = useState(""); // 수정할 닉네임
-  const inputRef = useRef(null); 
+  const inputRef = useRef(null);
   const dispatch = useDispatch();
 
   //닉네임 가져오기위해 user정보 가져오기
@@ -32,7 +32,8 @@ export default function ProfilePage() {
     if (inputRef.current) {
       inputRef.current.focus();
     }
-  }, [nickname]);
+    console.log("ckckck");
+  }, [profile]);
 
   const handleNicknameChange = (e) => {
     setNickname(e.target.value);
@@ -42,10 +43,11 @@ export default function ProfilePage() {
     e.preventDefault();
     try {
       await updateProfile({ nickname });
-      
-      const profileData = await getUserProfile();
 
-      dispatch(setUser(profileData));
+      const updatedProfileData = await getUserProfile();
+
+      dispatch(setUser(updatedProfileData));
+      setProfile(updatedProfileData);
 
       Swal.fire({
         icon: "success",
@@ -56,9 +58,6 @@ export default function ProfilePage() {
           inputRef.current.focus();
         }, 500);
       });
-
-      setNickname(profileData.nickname);
-
     } catch (error) {
       Swal.fire({
         icon: "error",
