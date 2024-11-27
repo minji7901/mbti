@@ -68,7 +68,7 @@ const apiRequest = async (method, url, data = null, headers = {}) => {
 
 export const register = (userData) => apiRequest("post", "/register", userData);
 
-export const login = (userData, expiresIn = "1h") =>
+export const login = (userData, expiresIn = "2h") =>
   apiRequest("post", "/login", userData, { params: { expiresIn } });
 
 export const getUserProfile = async () => {

@@ -55,6 +55,24 @@ export default function TestResultItem({ data }) {
     return null;
   }
 
+  //테스트 공개여부
+  const handleToggleVisibility = () => {
+    Swal.fire({
+      title: `${visibility ? "비공개" : "공개"}하시겠습니까?👻`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#4F86F7",
+      cancelButtonColor: "#FF6B6B",
+      confirmButtonText: `${visibility ? "비공개" : "공개"}`,
+      cancelButtonText: "취소",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(`${visibility ? "비공개" : "공개"}되었습니다.`);
+        toggleMutation.mutate(id);
+      }
+    });
+  };
+
   //테스트 결과 삭제
   const handleDeleteTestResult = () => {
     Swal.fire({
@@ -98,7 +116,7 @@ export default function TestResultItem({ data }) {
             <div className="flex justify-end gap-5">
               <button
                 type="button"
-                onClick={() => toggleMutation.mutate(id)}
+                onClick={handleToggleVisibility}
                 className="px-2 py-1 bg-blue-300 rounded-md border border-black shadow-custom"
               >
                 {visibility ? "비공개" : "공개"}로 전환
