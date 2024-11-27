@@ -74,7 +74,7 @@ export default function TestResultItem({ data }) {
   };
 
   return (
-    <li className="border border-black p-5 rounded-md">
+    <li className="border border-black p-5 rounded-md mb-5">
       {/* data가 빈 객체일 경우 처리 */}
       {Object.keys(data).length > 0 && (
         <div>
