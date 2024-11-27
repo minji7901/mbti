@@ -32,7 +32,6 @@ export default function ProfilePage() {
     if (inputRef.current) {
       inputRef.current.focus();
     }
-    console.log("ckckck");
   }, [profile]);
 
   const handleNicknameChange = (e) => {
