@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const jsonApi = axios.create({
-  baseURL: "http://localhost:5000/testResults",
+  baseURL: "https://buttery-bronze-drawbridge.glitch.me/testResults",
 });
 
 export const createTestResult = async (mbti, mbtiDesc, userData) => {
