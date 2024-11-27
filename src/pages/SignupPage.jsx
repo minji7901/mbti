@@ -19,10 +19,18 @@ export default function SignupPage() {
         navigate("/login");
       }
     } catch (error) {
+      let errorMessage = "회원가입에 실패했습니다.";
+
+      if (error.response?.status === 409) {
+        errorMessage = "이미 사용 중인 이메일 또는 아이디입니다.";
+      } else if (error.response?.data?.message) {
+        errorMessage = error.response.data.message;
+      }
+
       Swal.fire({
         icon: "error",
-        title: "회원가입에 실패했습니다.",
-        text: error.message || error,
+        title: "오류 발생",
+        text: errorMessage,
       });
     }
   };
