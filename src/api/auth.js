@@ -37,9 +37,7 @@ const createApiInstance = (baseURL) => {
 };
 
 const authApi = createApiInstance("https://moneyfulpublicpolicy.co.kr");
-const jsonApi = createApiInstance(
-  "hhttps://buttery-bronze-drawbridge.glitch.me"
-);
+const jsonApi = createApiInstance(import.meta.env.VITE_BASE_URL);
 
 // 사용자 정보 조회를 위한 인터셉터 설정 (jsonApi)
 jsonApi.interceptors.request.use(
