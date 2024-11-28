@@ -2,8 +2,8 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
-import { authApi } from "../api/auth";
-import { login, fetchUserInfo } from "../redux/slices/authSlice";
+import { authApi, fetchUserInfo } from "../api/auth";
+import { login } from "../redux/slices/authSlice";
 import AuthForm from "../components/AuthForm";
 
 export default function LoginPage() {

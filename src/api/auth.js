@@ -1,5 +1,5 @@
 import axios from "axios";
-import { logout } from "../redux/slices/authSlice";
+import { logout, setUser } from "../redux/slices/authSlice";
 import store from "../redux/config/configStore";
 
 // 공통 Axios 인스턴스 설정
@@ -86,3 +86,10 @@ export const updateProfile = async (formData) => {
 };
 
 export { authApi, jsonApi };
+
+export const fetchUserInfo = () => async (dispatch) => {
+  const userProfile = await getUserProfile();
+  if (userProfile) {
+    dispatch(setUser(userProfile));
+  }
+};

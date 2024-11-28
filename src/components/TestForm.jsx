@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { questions } from "../data/questions";
+import TestFormOption from "./TestFormQuestions";
+import TestFormQuestions from "./TestFormQuestions";
 
 export default function TestForm({ onSubmit }) {
   const [answers, setAnswers] = useState(
@@ -55,26 +57,13 @@ export default function TestForm({ onSubmit }) {
   return (
     <form onSubmit={handleSubmit}>
       {questions.map((q, index) => (
-        <div key={q.id} className="mb-6 p-5 border border-black rounded-sm">
-          <p className="font-semibold text-lg mb-3">
-            Q{index + 1}. {q.question}
-          </p>
-          <div className="flex flex-col gap-2">
-            {q.options.map((option, i) => (
-              <label key={i} className="cursor-pointer block">
-                <input
-                  type="radio"
-                  name={`question-${index}`}
-                  value={q.type.split("/")[i]}
-                  checked={answers[index]?.answer === q.type.split("/")[i]}
-                  onChange={() => handleChange(index, q.type.split("/")[i])}
-                  className="mr-2 text-primary-color"
-                />
-                {option}
-              </label>
-            ))}
-          </div>
-        </div>
+        <TestFormQuestions
+          key={q.id}
+          question={q}
+          index={index}
+          answer={answers[index]?.answer}
+          onChange={(value) => handleChange(index, value)}
+        />
       ))}
       <div className="text-center">
         <button type="submit" className="w-full button-style font-bold">

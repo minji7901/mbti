@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+} from "react-router-dom";
 import { useSelector } from "react-redux";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
@@ -15,9 +21,9 @@ const PublicRoute = ({ element }) => {
   return isLogin ? <Navigate to="/" replace /> : element;
 };
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoute = () => {
   const isLogin = useSelector((state) => state.auth.isLogin);
-  return isLogin ? children : <Navigate to="/login" replace />;
+  return isLogin ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 export default function Router() {
@@ -31,30 +37,11 @@ export default function Router() {
             element={<PublicRoute element={<LoginPage />} />}
           />
           <Route path="signup" element={<SignupPage />} />
-          <Route
-            path="test"
-            element={
-              <PrivateRoute>
-                <TestPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="results"
-            element={
-              <PrivateRoute>
-                <TestResultPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="profile"
-            element={
-              <PrivateRoute>
-                <ProfilePage />
-              </PrivateRoute>
-            }
-          />
+          <Route element={<PrivateRoute />}>
+            <Route path="test" element={<TestPage />} />
+            <Route path="results" element={<TestResultPage />} />
+            <Route path="profile" element={<ProfilePage />} />
+          </Route>
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>

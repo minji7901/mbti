@@ -5,13 +5,10 @@ import {
   updateTestResultVisibility,
   deleteTestResult,
 } from "../api/testResults";
-import { useSelector } from "react-redux";
+import { formattedDate } from "../utils/formattedDate";
 
-export default function TestResultItem({ data }) {
+export default function TestResultItem({ data, currentUser }) {
   const { id, visibility, mbti, mbtiDesc, timestamp, userData } = data;
-
-  // 리덕스 상태에서 로그인된 사용자 정보 가져오기
-  const currentUser = useSelector((state) => state.auth.user);
 
   const queryClient = useQueryClient();
 
@@ -36,16 +33,7 @@ export default function TestResultItem({ data }) {
   });
 
   // 날짜 변환
-  const formattedDate = () => {
-    const date = new Date(timestamp);
-    let hours = date.getHours();
-    const minutes = date.getMinutes();
-    const ampm = hours >= 12 ? "오후" : "오전";
-    hours = hours % 12 || 12;
-    return `${date.getFullYear()}년 ${
-      date.getMonth() + 1
-    }월 ${date.getDate()}일 ${ampm} ${hours}시 ${minutes}분`;
-  };
+  const dataDate = formattedDate(timestamp);
 
   // 현재 로그인한 유저의 id와 작성자의 id 비교
   const isOwner = currentUser.id === userData.id;
@@ -105,7 +93,7 @@ export default function TestResultItem({ data }) {
                 nickname : <strong>{userData?.nickname}</strong>
               </p>
             </div>
-            <p className="text-gray-500">{formattedDate()}</p>
+            <p className="text-gray-500">{dataDate}</p>
           </div>
           <div className="my-3">
             <strong className="block text-center text-2xl">{mbti}</strong>
