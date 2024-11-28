@@ -1,5 +1,5 @@
 # mbti 테스트 사이트
-react + redux + router + tanstack query + tailwind + json server을 사용하여 포켓몬 리스트를 보여주는 사이트입니다.
+react + redux + router + tanstack query + tailwind + json server을 사용하여 mbti 테스트를 보여주는 사이트입니다.
 ![image](https://github.com/user-attachments/assets/d30c8930-8ab6-466f-b137-9b2b9abebf29)
 
 ## ✅ 기능
